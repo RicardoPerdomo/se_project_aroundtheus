@@ -4,7 +4,7 @@ Overview
 
 - Intro
 - Figma
-- Project -
+- Project - https://ricardoperdomo.github.io/se_project_aroundtheus/
 
 Project Features
 
