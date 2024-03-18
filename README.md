@@ -6,6 +6,12 @@ Overview
 - Figma
 - Project -
 
+Project Features
+
+- Grid
+- BEM file structure
+- Media queries
+
 Introduction
 
 This project is a responsive page for a user to make their profile that can be viewed from different screens.

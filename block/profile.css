@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   margin-top: 40px;
-  max-height: 286px;
-  min-height: 120px;
   min-width: 282px;
 }
 
@@ -14,25 +12,25 @@
   grid-row-gap: 9px;
   max-width: 415px;
   padding-bottom: 36px;
-  padding-top: 30px;
 }
 
 .profile__edit-button {
-  background: transparent url(../images/Edit\ Button.svg) center no-repeat;
+  background: transparent url(../images/EditButton.svg) center no-repeat;
   height: 24px;
   width: 24px;
   grid-area: button;
   margin: 4px 0 9px 10px;
   border-width: 1px;
   border-style: solid;
+  border: 1px solid #fff;
 }
 
 .profile__edit-button:hover {
-  background-image: url(../images/Vector.svg);
+  opacity: 0.5;
 }
 
 .profile__add-button {
-  background: transparent url(../images/Add\ Button.svg) center no-repeat;
+  background: transparent url(../images/AddButton.svg) center no-repeat;
   max-width: 282px;
   min-width: 150px;
   height: 50px;
@@ -41,6 +39,7 @@
   border-width: 2px;
   border-style: solid;
   object-fit: cover;
+  border: 2px solid #fff;
 }
 
 .profile__add-button:hover {
@@ -58,13 +57,12 @@
   padding: 0;
   max-width: 373px;
   min-width: 196px;
-  max-height: 48px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.profile__descirption {
+.profile__description {
   font-size: 18px;
   line-height: 22px;
   min-width: 282px;
@@ -93,14 +91,9 @@
   }
 
   .profile__title {
-    font-size: 42px;
-    line-height: 48px;
-    font-weight: 500;
-    grid-area: title;
-    margin: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    font-size: 22px;
+    line-height: 1.2;
+    padding-top: 20px;
   }
 
   .profile__info {
@@ -111,20 +104,14 @@
   }
 
   .profile__description {
-    font-size: 18px;
-    line-height: 22px;
-    font-weight: 400;
-    grid-area: description;
-    margin: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 370px;
-    overflow: hidden;
+    font-size: 14px;
+    margin-top: 0;
   }
 
   .profile__add-button {
     margin: 0;
     width: 100%;
+    background-size: 16px;
   }
 
   .profile__edit-button {
@@ -133,5 +120,6 @@
     margin-top: 0;
     margin-bottom: 2px;
     margin-left: 5px;
+    background-size: 7.5px;
   }
 }
