@@ -1,17 +1,13 @@
 .profile {
   display: flex;
   align-items: center;
-  margin-top: 40px;
-  min-width: 282px;
+  padding-top: 40px;
 }
 
 .profile__info {
   display: grid;
   grid-template-areas: "title button" "description description";
   grid-template-columns: minmax(auto, 373px) auto;
-  grid-row-gap: 9px;
-  max-width: 415px;
-  padding-bottom: 36px;
 }
 
 .profile__edit-button {
@@ -19,14 +15,16 @@
   height: 24px;
   width: 24px;
   grid-area: button;
-  margin: 4px 0 9px 10px;
-  border-width: 1px;
-  border-style: solid;
-  border: 1px solid #fff;
+  border: 1px solid white;
+  margin-left: 10px;
+  margin-right: 10px;
+  align-self: center;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .profile__add-button {
@@ -40,23 +38,23 @@
   border-style: solid;
   object-fit: cover;
   border: 2px solid #fff;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
-  opacity: 50%;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 .profile__title {
   font-size: 42px;
-  line-height: 0.8;
+  line-height: 48px;
   font-weight: 500;
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   grid-area: title;
   margin: 0;
-  padding: 0;
-  max-width: 373px;
-  min-width: 196px;
+  max-width: 380px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -65,7 +63,7 @@
 .profile__description {
   font-size: 18px;
   line-height: 22px;
-  min-width: 282px;
+  max-width: 370px;
   font-weight: 400;
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
@@ -80,12 +78,11 @@
   height: 120px;
   width: 120px;
   border-radius: 50%;
-  object-fit: cover;
-  background-position: center;
+  flex-shrink: 0;
   margin-right: 24px;
 }
 
-@media screen and (max-width: 460px) {
+@media screen and (max-width: 765px) {
   .profile {
     flex-direction: column;
   }
@@ -93,7 +90,7 @@
   .profile__title {
     font-size: 22px;
     line-height: 1.2;
-    padding-top: 20px;
+    max-width: 196px;
   }
 
   .profile__info {
@@ -106,6 +103,7 @@
   .profile__description {
     font-size: 14px;
     margin-top: 0;
+    text-align: center;
   }
 
   .profile__add-button {
@@ -121,5 +119,10 @@
     margin-bottom: 2px;
     margin-left: 5px;
     background-size: 7.5px;
+  }
+
+  .profile__image {
+    margin: 0;
+    margin-bottom: 30px;
   }
 }
