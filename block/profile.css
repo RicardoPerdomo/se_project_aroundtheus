@@ -24,7 +24,6 @@
 
 .profile__edit-button:hover {
   opacity: 0.6;
-  cursor: pointer;
 }
 
 .profile__add-button {
@@ -34,16 +33,13 @@
   height: 50px;
   margin-left: auto;
   padding: 0;
-  border-width: 2px;
-  border-style: solid;
-  object-fit: cover;
   border: 2px solid #fff;
   cursor: pointer;
+  border-radius: 2px;
 }
 
 .profile__add-button:hover {
   opacity: 0.6;
-  cursor: pointer;
 }
 
 .profile__title {
@@ -85,6 +81,7 @@
 @media screen and (max-width: 765px) {
   .profile {
     flex-direction: column;
+    grid-row-gap: 16px;
   }
 
   .profile__title {
@@ -94,7 +91,7 @@
   }
 
   .profile__info {
-    display: flex;
+    grid-template-columns: minmax(auto, 200px) auto;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
@@ -104,6 +101,7 @@
     font-size: 14px;
     margin-top: 0;
     text-align: center;
+    margin-bottom: 36px;
   }
 
   .profile__add-button {
