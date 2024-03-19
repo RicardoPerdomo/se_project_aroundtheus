@@ -81,7 +81,6 @@
 @media screen and (max-width: 765px) {
   .profile {
     flex-direction: column;
-    grid-row-gap: 16px;
   }
 
   .profile__title {
@@ -95,6 +94,7 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    grid-row-gap: 16px;
   }
 
   .profile__description {
