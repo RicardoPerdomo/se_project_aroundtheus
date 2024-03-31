@@ -9,129 +9,139 @@
     <link href="./pages/index.css" rel="stylesheet" />
     <title>Around the U.S</title>
   </head>
-  <body class="page">
-    <div class="page__content">
-      <header class="header page__section">
-        <img
-          src="./images/AroundTheUS.svg"
-          alt="Around the U.S logo"
-          class="header__logo"
-        />
-      </header>
-      <main class="content">
-        <section class="profile page__section">
-          <img src="./images/Avatar.jpg" alt="avatar" class="profile__image" />
-          <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
-            <button
-              type="button"
-              class="profile__edit-button"
-              id="profile-edit-button"
-            ></button>
-            <p class="profile__description">Explorer</p>
-          </div>
-          <button type="button" class="profile__add-button"></button>
-        </section>
-        <section class="cards page__section">
-          <ul class="cards__list">
-            <li class="card">
-              <img
-                src="./images/yosemite.jpg"
-                class="card__images"
-                alt="Yosemite photo"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Yosemite valley</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lake-louise.jpg"
-                class="card__images"
-                alt="Lake Louise photo"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lake louise</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/bald-mountains.jpg"
-                class="card__images"
-                alt="Bald Mountains photo"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/latemar.jpg"
-                class="card__images"
-                alt="Latemar photo"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/vanoise.jpg"
-                class="card__images"
-                alt="Vanoise photo"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/lago.jpg"
-                class="card__images"
-                alt="Lago photo"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-          </ul>
-        </section>
-        <footer class="footer page__section">
-          <p class="footer__copyright">&copy; 2024 Around The U.S</p>
-        </footer>
-      </main>
-    </div>
-    <div class="modal" id="profile-edit-modal">
-      <div class="modal__container">
-        <button
-          class="modal__close"
-          type="button"
-          id="modal-close-button"
-        ></button>
-        <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
-          <input
-            class="modal__input"
-            type="text"
-            name="title"
-            placeholder="Jacques Cousteau"
-          />
-          <input
-            class="modal__input"
-            type="text"
-            name="description"
-            placeholder="Explorer"
-          />
-          <button class="modal__button" type="button">Save</button>
-        </form>
-      </div>
-    </div>
-    <script src="./scripts/index.js"></script>
-  </body>
 </html>
+<body class="page">
+  <div class="page__content">
+    <header class="header page__section">
+      <img
+        src="./images/AroundTheUS.svg"
+        alt="Around the U.S logo"
+        class="header__logo"
+      />
+    </header>
+    <main class="content">
+      <section class="profile page__section">
+        <img src="./images/Avatar.jpg" alt="avatar" class="profile__image" />
+        <div class="profile__info">
+          <h1 class="profile__title">Jacques Cousteau</h1>
+          <button
+            type="button"
+            class="profile__edit-button"
+            id="profile-edit-button"
+          ></button>
+          <p class="profile__description">Explorer</p>
+        </div>
+        <button type="button" class="profile__add-button" id="profile-add-button"></button>
+      </section>
+      <section class="elements page__section">
+        <ul class="elements__list"></ul>
+      </section>
+      <footer class="footer page__section">
+        <p class="footer__copyright">&copy; 2024 Around The U.S</p>
+      </footer>
+    </main>
+  </div>
+  <div class="modal" id="profile-edit-modal">
+    <div class="modal__container">
+      <button
+        class="modal__exit-button"
+        type="button"
+        id="profile-edit-modal-close-button"
+      ></button>
+      <h2 class="modal__title">Edit Profile</h2>
+      <form 
+      class="modal__form"
+      name="profile-edit-form"
+      id="profile-edit-form"
+      >
+        <input
+          class="modal__input"
+          id="profile-input-name"
+          type="name"
+          name="name"
+          placeholder="Name"
+        />
+        <input
+          class="modal__input modal__input_type_seperation"
+          id="profile-input_description"
+          type="text"
+          name="description"
+          placeholder="Description"
+        />
+        <button class="modal__save-button" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="card-add-modal">
+    <div class="modal__container">
+      <button
+        class="modal__exit-button"
+        type="button"
+        id="card-add-modal-close-button"
+      ></button>
+      <h2 class="modal__title">New Place</h2>
+      <form class="modal__form" name="card-add-form" id="card-add-form">
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          class="modal__input"
+          id="card-input-title"
+        />
+        <input
+          type="text"
+          name="url"
+          placeholder="Image URL"
+          class="modal__input modal__input_type_separation"
+          id="card-input-url"
+        />
+        <button class="modal__save-button" type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="preview-image-modal">
+    <div
+      class="modal__container modal__container_preview-image"
+      id="preview-image-container"
+    >
+      <button
+        class="modal__exit-button"
+        type="button"
+        id="image-preview-close-button"
+      ></button>
+      <img
+        src=""
+        alt=""
+        class="elements__image elements__image_preview"
+        id="preview-image"
+      />
+      <p class="modal__image_caption" id="image-preview-caption"></p>
+    </div>
+  </div>
+</div>
+
+<template id="card-template">
+  <li class="elements__card">
+    <button
+      class="elements__delete-button"
+      type="button"
+      id="card-delete-button"
+    ></button>
+    <img src="" alt="" class="elements__image" id="card-URL" />
+    <div class="elements__description">
+      <h2 class="elements__name" id="card-title"></h2>
+      <button
+        class="elements__like-button"
+        type="button"
+        id="like-button"
+      ></button>
+    </div>
+  </li>
+</template>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>
+
+
