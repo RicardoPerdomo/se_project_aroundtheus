@@ -9,116 +9,112 @@
     <link href="./pages/index.css" rel="stylesheet" />
     <title>Around the U.S</title>
   </head>
-</html>
-<body class="page">
-  <div class="page__content">
-    <header class="header page__section">
-      <img
-        src="./images/AroundTheUS.svg"
-        alt="Around the U.S logo"
-        class="header__logo"
-      />
-    </header>
-    <main class="content">
-      <section class="profile page__section">
+
+  <body class="page">
+    <div class="page__content">
+      <header class="header page__section">
         <img
-          class="profile__image"
-          src="./images/Avatar.jpg"
-          alt="Jacques"
+          src="./images/AroundTheUS.svg"
+          alt="Around the U.S logo"
+          class="header__logo"
         />
-        <div class="profile__info">
-          <h1 class="profile__name">Jacques Cousteau</h1>
+      </header>
+      <main class="content">
+        <section class="profile page__section">
+          <img class="profile__image" src="./images/Avatar.jpg" alt="Jacques" />
+          <div class="profile__info">
+            <h1 class="profile__name">Jacques Cousteau</h1>
+            <button
+              aria-label="edit button"
+              type="button"
+              class="profile__edit-button"
+            ></button>
+            <p class="profile__job">Explorer</p>
+          </div>
           <button
-            aria-label="edit button"
+            aria-label="add button"
             type="button"
-            class="profile__edit-button"
+            class="profile__add-button profile__add-button_inactive"
           ></button>
-          <p class="profile__job">Explorer</p>
-        </div>
-        <button
-          aria-label="add button"
-          type="button"
-          class="profile__add-button profile__add-button_inactive"
-        ></button>
-      </section>
-      <section class="cards page__section">
-        <ul class="cards__list"></ul>
-      </section>
-    </main>
-  </div>
-  <footer class="footer page__section">
-    <p class="footer__copyright">&copy;2024 Around The U.S.</p>
-  </footer>
-  
-  <div class="modal" id="edit-modal">
-    <div class="modal__container">
-      <button class="modal__close"></button>
-      <h2 class="modal__heading">Edit profile</h2>
-      <form class="modal__form" id="edit-profile-modal">
-        <input
-          name="name"
-          type="text"
-          placeholder="Name"
-          class="modal__input"
-        />
-        <input
-          name="job"
-          type="text"
-          placeholder="Job Description"
-          class="modal__input"
-        />
-        <button type="submit" class="modal__submit-button">Save</button>
-      </form>
+        </section>
+        <section class="cards page__section">
+          <ul class="cards__list"></ul>
+        </section>
+      </main>
     </div>
-  </div>
-  <div class="modal" id="add-card-modal">
-    <div class="modal__container">
-      <button class="modal__close"></button>
-      <h2 class="modal__heading">New place</h2>
-      <form class="modal__form" id="add-card-form">
-        <input
-          name="title"
-          type="text"
-          placeholder="Title"
-          class="modal__input"
-          required
-        />
-        <input
-          name="url"
-          placeholder="Image URL"
-          type="url"
-          class="modal__input"
-          required
-        />
-        <button type="submit" class="modal__submit-button">Save</button>
-      </form>
-    </div>
-  </div>
-  <div class="modal" id="preview-image-modal">
-    <div class="modal__image-container">
-      <button class="modal__close" id="preview-image-close-button"></button>
-      <img src="" alt="" class="modal__image-preview" />
-      <p class="modal__picture-subtitle"></p>
-    </div>
-  </div>
-  <template id="card-template">
-    <li class="card">
-      <img src="" alt="" class="card__image" />
-      <button
-        aria-label="delete button"
-        type="button"
-        class="card__delete-button"
-      ></button>
-      <div class="card__text">
-        <h2 class="card__title"></h2>
-        <button
-          aria-label="like button"
-          type="button"
-          class="card__heart-button"
-        ></button>
+    <footer class="footer page__section">
+      <p class="footer__copyright">&copy;2024 Around The U.S.</p>
+    </footer>
+
+    <div class="modal" id="edit-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <h2 class="modal__heading">Edit profile</h2>
+        <form class="modal__form" id="edit-profile-modal">
+          <input
+            name="name"
+            type="text"
+            placeholder="Name"
+            class="modal__input"
+          />
+          <input
+            name="job"
+            type="text"
+            placeholder="Job Description"
+            class="modal__input"
+          />
+          <button type="submit" class="modal__submit-button">Save</button>
+        </form>
       </div>
-    </li>
-  </template>
-  <script src="./scripts/index.js" defer></script>
-</body>
+    </div>
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <h2 class="modal__heading">New place</h2>
+        <form class="modal__form" id="add-card-form">
+          <input
+            name="title"
+            type="text"
+            placeholder="Title"
+            class="modal__input"
+            required
+          />
+          <input
+            name="url"
+            placeholder="Image URL"
+            type="url"
+            class="modal__input"
+            required
+          />
+          <button type="submit" class="modal__submit-button">Save</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="preview-image-modal">
+      <div class="modal__image-container">
+        <button class="modal__close" id="preview-image-close-button"></button>
+        <img src="" alt="" class="modal__image-preview" />
+        <p class="modal__picture-subtitle"></p>
+      </div>
+    </div>
+    <template id="card-template">
+      <li class="card">
+        <img src="" alt="" class="card__image" />
+        <button
+          aria-label="delete button"
+          type="button"
+          class="card__delete-button"
+        ></button>
+        <div class="card__text">
+          <h2 class="card__title"></h2>
+          <button
+            aria-label="like button"
+            type="button"
+            class="card__heart-button"
+          ></button>
+        </div>
+      </li>
+    </template>
+    <script src="./scripts/index.js" defer></script>
+  </body>
 </html>
