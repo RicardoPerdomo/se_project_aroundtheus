@@ -1,167 +1,119 @@
 .modal {
   position: fixed;
-  padding: 0 19px;
-  font-family: "Inter", "Times New Roman", Serif;
-  display: flex;
   top: 0;
   left: 0;
-  bottom: 0;
   right: 0;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s 0.5s, opacity 0.5s;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  display: none;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
+  padding: 0 19px;
 }
 
 .modal_opened {
-  visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity 0.5s;
+  display: flex;
+}
+
+.modal__close {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  padding: 0;
+  border: none;
+  background: transparent url(../images/Close.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal__close:hover {
+  cursor: pointer;
+  opacity: 60%;
 }
 
 .modal__container {
   position: relative;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
+  width: 430px;
+  background-color: #fff;
+  padding: 0;
+  margin: 0 36px 0;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 1);
-  padding: 36px;
 }
 
-.modal__heading {
-  font-weight: 900;
+.modal__title {
   font-size: 24px;
-  margin: 0;
-  padding-bottom: 54px;
+  font-weight: 900;
   line-height: 1.2;
-  color: rgba(0, 0, 0, 1);
-}
-
-.modal__close {
-  border: none;
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding: 0;
-  background-color: transparent;
-  cursor: pointer;
-  position: absolute;
-  bottom: calc(100% + 5px);
-  left: calc(100% + 5px);
-  height: 40px;
-  width: 40px;
-  background-image: url(../images/Close.svg);
-  transition: opacity 0.35s;
-}
-
-.modal__close:hover {
-  opacity: 0.6;
-  cursor: pointer;
+  color: #000;
+  margin: 34px 0 54px 36px;
 }
 
 .modal__form {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 36px;
+  gap: 30px;
 }
 
-.modal__input {
-  border-radius: 1px;
-  border-top: #fff;
-  border-right: #fff;
-  border-left: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-.modal__input:last-of-type {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 48px;
-}
-
-.modal__form {
+.modal__form-input {
   width: 358px;
-}
-
-.modal__submit-button {
-  height: 50px;
-  background-color: rgba(0, 0, 0, 1);
-  color: rgba(255, 255, 255, 1);
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 400;
-  border-radius: 2px;
+  height: 27.26px;
   padding: 0;
-  transition: opacity 0.35s;
-}
-
-.modal__submit-button:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.modal__image-container {
-  position: relative;
-  margin: 90px auto;
-  max-height: 75vh;
-  max-width: 75vw;
-}
-
-.modal__image-preview {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.modal__picture-subtitle {
-  font-size: 12px;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
-  color: rgba(255, 255, 255, 1);
 }
 
-@media screen and (max-width: 630px) {
-  .modal {
-    align-items: baseline;
-    justify-content: center;
+.modal__button {
+  width: 358px;
+  height: 51px;
+  background-color: #000;
+  color: #fff;
+  border: 0;
+  padding: 0;
+  margin: 18px 0 37px 0;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.modal__button:hover {
+  opacity: 80%;
+}
+
+@media screen and (max-width: 575px) {
+  .modal__close {
+    width: 26px;
+    height: 26px;
+    bottom: calc(100% + 15px);
+    left: calc(100% + -30px);
   }
 
   .modal__container {
-    padding: 25px 22px;
-    margin: 123px 19px;
+    width: 282px;
+    margin: 22px 22px 0;
   }
 
   .modal__form {
-    width: 260px;
-  }
-
-  .modal__close {
-    height: 26px;
-    width: 26px;
-    top: -40px;
-    left: 250px;
+    margin: 0 22px;
   }
 
   .modal__heading {
     font-size: 18px;
-    padding: 0 0 75px;
+    margin: 25px 22px 75px 22px;
   }
 
-  .modal__input-name {
+  .modal__button {
+    margin: 15px 0 25px 0;
     font-size: 14px;
-  }
-
-  .modal__input-job {
-    font-size: 14px;
-    margin-bottom: 45px;
-  }
-
-  .modal__submit-button {
-    font-size: 14px;
-    height: 46px;
-    width: 238px;
   }
 }
