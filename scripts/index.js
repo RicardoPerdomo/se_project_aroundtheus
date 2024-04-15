@@ -75,6 +75,11 @@ function handleAddCardFormSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
+  clearCardForm();
+}
+
+function clearCardForm() {
+  addCardFormElement.reset();
 }
 
 function renderCard(cardData, wrapper) {
@@ -82,13 +87,13 @@ function renderCard(cardData, wrapper) {
   wrapper.prepend(cardElement);
 }
 
-function FillProfileForm() {
+function fillProfileForm() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
 
 function openEditProfileModal() {
-  FillProfileForm();
+  fillProfileForm();
   openModal(profileEditModal);
 }
 
@@ -98,7 +103,6 @@ function getCardElement(cardData) {
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardLikeButton = cardElement.querySelector(".card__heart-button");
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  const previewImageModal = document.querySelector("#preview-image-modal");
   const modalImage = document.querySelector(".modal__image-preview");
   const previewSubtitle = previewImageModal.querySelector(
     ".modal__picture-subtitle"
