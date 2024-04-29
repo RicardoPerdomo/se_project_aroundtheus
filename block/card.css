@@ -1,73 +1,72 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 282px;
+  list-style-type: none;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
 }
 
+.card__image {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.card__description {
+  background-color: #fff;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 20px;
+}
+
 .card__title {
-  color: black;
-  margin: 0;
-  text-overflow: ellipsis;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.2;
+  max-width: 220px;
   white-space: nowrap;
   overflow: hidden;
-  font-family: "Inter", "Times New Roman", serif;
-  max-width: 193px;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.2;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
-.card__text {
-  display: flex;
-  justify-content: space-between;
-  background: white;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  padding-left: 20px;
-}
-
-.card__image {
-  height: 282px;
-  width: 282px;
-  z-index: 0;
+.card__react-button {
+  background: transparent url(../images/HeartInactiveBTN.svg) center no-repeat;
+  height: 18px;
+  width: 21px;
+  border: 0;
   cursor: pointer;
+}
+
+.card__react-button:hover {
+  opacity: 0.6;
+}
+
+.card__react-button_active {
+  background-image: url(../images/HeartBTNclicked.jpg);
 }
 
 .card__delete-button {
-  background: transparent url("../images/Trash.svg") no-repeat;
+  background: transparent url(../images/Trash.svg) center no-repeat;
   height: 19.3px;
   width: 18px;
-  background-size: 18px 19.3px;
+  border: 0;
+  cursor: pointer;
   position: absolute;
   top: 18px;
   right: 15px;
-  border: none;
-  cursor: pointer;
 }
 
-.card__heart-button {
-  height: 21px;
-  width: 18px;
-  justify-content: flex-end;
-  align-self: center;
-  background: transparent url("../images/HeartInactiveBTN.svg") no-repeat;
-  background-size: 18px 21px;
-  border: none;
-  margin: 0 20px 0;
-  padding: 0;
-  transition: opacity 0.35s;
-  flex-shrink: 0;
+.card__delete-button:hover {
+  opacity: 0.6;
 }
 
-.card__heart-button:not(.card__heart-button_clicked):hover {
-  opacity: 0.5;
-  cursor: pointer;
-}
-
-.card__heart-button_clicked {
-  background: transparent url("../images/HeartBTNclicked.jpg") no-repeat;
-  background-size: 18px 21px;
+.card__image-preview {
+  max-width: 75vw;
+  max-height: 75vh;
 }

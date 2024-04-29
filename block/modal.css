@@ -1,201 +1,180 @@
 .modal {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
   top: 0;
-  left: 0;
   bottom: 0;
+  left: 0;
   right: 0;
+  padding: 0 19px;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: Inter, Arial, Helvitica, sans-serif;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 0.5s, opacity 0.5s;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0 19px;
-  font-family: "Inter", "Times New Roman", Serif;
-  display: flex;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
-.modal_opened {
+.modal_open {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s;
+  transition: visibility 0s, opacity 0.3s linear;
 }
 
 .modal__container {
-  position: relative;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #fff;
   padding: 36px;
-}
-
-.modal__heading {
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.2;
-  color: rgba(0, 0, 0, 1);
-  margin: 0;
-  padding-bottom: 54px;
-}
-
-.modal__close {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  position: absolute;
-  bottom: calc(100% + 5px);
-  left: calc(100% + 5px);
-  height: 40px;
-  width: 40px;
-  background-image: url(../images/Close.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding: 0;
-  transition: opacity 0.35s;
-}
-
-.modal__close:hover {
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.modal__form {
+  border-radius: 10px;
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 358px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 34px 36px 36px;
+  max-width: 430px;
+  max-height: 330px;
 }
 
-.modal__input {
-  border-radius: 1px;
-  border-top: #fff;
-  border-right: #fff;
-  border-left: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.2;
-  padding-bottom: 5px;
-  margin-top: 0;
-}
-
-.modal__input:last-of-type {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.modal__input_type_error {
-  border-bottom: 1px solid red;
-}
-
-.modal__input-error_active {
-}
-
-.modal__error {
-  font-size: 12px;
-  line-height: 15px;
-  color: #ff0000;
-  padding-top: 5px;
-  top: calc(100%+5px);
-  left: 0;
-  transition: opacity 0.3s;
-  min-height: 35px;
-}
-
-.modal__submit-button {
-  height: 50px;
-  background-color: rgba(0, 0, 0, 1);
-  color: rgba(255, 255, 255, 1);
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 400;
-  border-radius: 2px;
-  padding: 0;
-  transition: opacity 0.35s;
-  margin-top: 8px;
-}
-
-.modal__submit-button:not(:disabled):hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-.modal__submit-button:disabled {
-  opacity: 0.2;
-}
-
-.modal__image-container {
+.modal__container-imagepreview {
   position: relative;
-  margin: 90px auto;
-  max-height: 75vh;
+  display: flex;
+  flex-direction: column;
   max-width: 75vw;
+  max-height: 75vh;
+  position: center;
 }
 
 .modal__image-preview {
-  max-height: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.modal__image-caption {
+  font-size: 12px;
+  line-height: 1.1;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.modal__heading {
+  color: #000;
+  font-weight: 900;
+  font-size: 24px;
+  margin: 0 0 54px 0;
+  line-height: 1.2;
+}
+
+.modal__close-button {
+  background-image: url("../images/Close.svg");
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  cursor: pointer;
+}
+
+.modal__close-button:hover {
+  opacity: 0.6;
+}
+
+.modal__form {
   max-width: 100%;
 }
 
-.modal__picture-subtitle {
-  font-size: 12px;
+.modal__form-input {
+  width: 100%;
+  height: 27px;
+  font-size: 14px;
+  line-height: 1.1;
   font-weight: 400;
-  line-height: 1.2;
-  color: rgba(255, 255, 255, 1);
+  outline: 0;
+  border-width: 0 0 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #000;
+  align-items: top;
+  box-sizing: border-box;
 }
 
-@media screen and (max-width: 580px) {
-  .modal {
-    align-items: baseline;
-    justify-content: center;
-    max-width: 282px;
-    margin: 0 auto;
-  }
+.modal__form-input:last-of-type {
+  margin-top: 30px;
+}
 
-  .modal__container {
-    padding: 25px 22px;
-    max-width: 240px;
-  }
+.modal__save-button {
+  width: 100%;
+  color: #fff;
+  background-color: #000;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.1;
+  height: 50px;
+  border-radius: 2px;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 48px;
+}
 
-  .modal__form {
-    width: 240px;
-  }
+.modal__save-button:hover {
+  opacity: 0.8;
+}
 
-  .modal__close {
+.modal__save-button:disabled {
+  width: 100%;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.modal__form-input-error {
+  font-size: 12px;
+  color: #ff0000;
+  opacity: 0;
+  visibility: hidden;
+  min-height: 30px;
+  max-width: 358px;
+  line-height: 1.2;
+  position: absolute;
+}
+
+.modal__form-input-error-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.modal__form_input_type_error {
+  border-bottom-color: red;
+}
+
+@media screen and (max-width: 720px) {
+  .modal__close-button {
     height: 26px;
     width: 26px;
-    top: -48px;
-    left: 250px;
+    bottom: calc(100% + 13px);
+    left: auto;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal__container {
+    padding: 25px 22px;
+    max-width: 282px;
+    max-height: 322px;
   }
 
   .modal__heading {
     font-size: 18px;
-    padding: 0 0 75px;
   }
 
-  .modal__input-name {
+  .modal__save-button {
     font-size: 14px;
-  }
-
-  .modal__input-job {
-    font-size: 14px;
-    margin-bottom: 45px;
-  }
-
-  .modal__submit-button {
-    font-size: 14px;
-    height: 46px;
-    width: 240px;
-    margin: 0 auto;
-  }
-
-  .modal__image-preview {
-    max-width: 240px;
-  }
-
-  .modal__preview__close {
-    height: 26px;
-    width: 26px;
-    top: -30px;
-    left: 245px;
   }
 }
