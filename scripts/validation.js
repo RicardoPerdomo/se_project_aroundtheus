@@ -14,13 +14,14 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
 
 function checkInputValidity(formEl, inputEl, options) {
   if (!inputEl.validity.valid) {
-    return showInputError(formEl, inputEl, options);
+    showInputError(formEl, inputEl, options);
+  } else {
+    hideInputError(formEl, inputEl, options);
   }
-  hideInputError(formEl, inputEl, options);
 }
 
 function hasInvalidInput(inputList) {
-  return !inputList.every((inputEl) => inputEl.validity.valid);
+  return inputList.every((inputEl) => inputEl.validity.valid);
 }
 
 function enableButton(submitBtn, { inactiveButtonClass }) {
@@ -63,7 +64,7 @@ function enableValidation(options) {
   });
 }
 
-const config = {
+const options = {
   formSelector: ".modal__form",
   inputSelector: ".modal__form_input",
   submitButtonSelector: ".modal__save-button",
@@ -72,4 +73,4 @@ const config = {
   errorClass: "modal__form-input-error-visible",
 };
 
-enableValidation(config);
+enableValidation(options);
