@@ -2,70 +2,71 @@
   display: flex;
   flex-direction: column;
   list-style-type: none;
+  border-radius: 10px;
+  overflow: hidden;
   position: relative;
 }
 
 .card__image {
-  height: 282px;
   width: 282px;
-  border-radius: 10px 10px 0 0;
+  height: 282px;
   object-fit: cover;
   cursor: pointer;
 }
 
 .card__description {
+  background-color: #fff;
+  color: #000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fff;
-  color: #000;
-  padding: 25px 20px 25px 20px;
-  border-radius: 0px 0px 10px 10px;
+  padding: 25px 20px;
 }
 
 .card__title {
-  margin: 0;
-  font-family: Inter, arial, sans-serif;
-  font-weight: 900;
+  font-family: Inter, Arial, sans-serif;
   font-size: 24px;
-  line-height: 1.21;
-  text-overflow: ellipsis;
+  font-weight: 900;
+  line-height: 1.2;
+  max-width: 220px;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 219px;
+  text-overflow: ellipsis;
+  margin: 0;
 }
 
-.card__like-button {
+.card__react-button {
   background: transparent url(../images/HeartInactiveBTN.svg) center no-repeat;
+  height: 18px;
   width: 21px;
-  height: 19px;
-  background-size: contain;
-  border: none;
-  transition: 0.2s ease-in-out;
-}
-
-.card__like-button:hover {
-  opacity: 0.5;
+  border: 0;
   cursor: pointer;
 }
 
-.card__like-button_active {
+.card__react-button:hover {
+  opacity: 0.6;
+}
+
+.card__react-button_active {
   background-image: url(../images/HeartBTNclicked.jpg);
 }
 
 .card__delete-button {
   background: transparent url(../images/Trash.svg) center no-repeat;
-  width: 18px;
   height: 19.3px;
-  top: 15px;
-  right: 15px;
-  background-size: contain;
-  border: none;
-  transition: 0.2s ease-in-out;
+  width: 18px;
+  border: 0;
+  cursor: pointer;
   position: absolute;
+  top: 18px;
+  right: 15px;
 }
 
 .card__delete-button:hover {
-  opacity: 0.5;
-  cursor: pointer;
+  opacity: 0.6;
+}
+
+.card__image-preview {
+  max-width: 75vw;
+  max-height: 75vh;
 }
