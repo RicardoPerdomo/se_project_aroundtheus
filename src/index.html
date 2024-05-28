@@ -22,142 +22,199 @@
           <img
             src="<%=require('./images/Avatar.jpg')%>"
             alt="Jacques Cousteau Avatar Image"
-            class="profile__image"
+            class="profile__avatar"
           />
-          <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+          <div class="profile__information">
+            <h1 class="profile__name">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
-              id="profile-edit-btn"
+              id="profile-edit-button"
               type="button"
-              aria-label="Edit Profile"
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
-          <button
-            class="profile__add-button"
-            id="places-add-btn"
-            type="button"
-            aria-label="Add New Location"
-          ></button>
+          <button class="profile__add-button" type="button"></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list"></ul>
+          <ul class="cards__list">
+            <!-- <li class="card">
+              <img
+                src="./images/yosemite.jpg"
+                alt="Yosemite"
+                class="card__image"
+              />
+              <div class="card__description">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="card__button" type="button"></button>
+              </div>
+            </li>
+
+            <li class="card">
+              <img
+                src="./images/lake-louise.jpg"
+                alt="Lake Louise"
+                class="card__image"
+              />
+              <div class="card__description">
+                <h2 class="card__title">Lake Louise</h2>
+                <button class="card__button" type="button"></button>
+              </div>
+            </li>
+
+            <li class="card">
+              <img
+                src="./images/bald-mountains.jpg"
+                alt="Bald Mountains"
+                class="card__image"
+              />
+              <div class="card__description">
+                <h2 class="card__title">Bald Mountains</h2>
+                <button class="card__button" type="button"></button>
+              </div>
+            </li>
+
+            <li class="card">
+              <img
+                src="./images/latemar.jpg"
+                alt="Latemar"
+                class="card__image"
+              />
+              <div class="card__description">
+                <h2 class="card__title">Latemar</h2>
+                <button class="card__button" type="button"></button>
+              </div>
+            </li>
+
+            <li class="card">
+              <img
+                src="./images/vanoise.jpg"
+                alt="Vanoise National Park"
+                class="card__image"
+              />
+              <div class="card__description">
+                <h2 class="card__title">Vanoise National Park</h2>
+                <button class="card__button" type="button"></button>
+              </div>
+            </li>
+
+            <li class="card">
+              <img
+                src="./images/lago.jpg"
+                alt="Lago di Braies"
+                class="card__image"
+              />
+              <div class="card__description">
+                <h2 class="card__title">Lago di Braies</h2>
+                <button class="card__button" type="button"></button>
+              </div>
+            </li> -->
+          </ul>
         </section>
       </main>
       <footer class="footer page__section">
-        <p class="footer__copyright">&#169; 2024 Around The U.S.</p>
+        <p class="footer__text">© 2024 Around The U.S.</p>
       </footer>
     </div>
 
-    <div class="modal" id="profile-edit-modal">
+    <div class="modal" id="profile_edit-modal">
       <div class="modal__container">
         <button
-          class="modal__close-button"
-          id="profile-modal-close-btn"
+          class="modal__close"
+          id="profile-modal-button-close"
+          type="button"
         ></button>
-        <h2 class="modal__heading">Edit Profile</h2>
-        <form class="modal__form" id="profile-form" novalidate>
-          <input
-            type="text"
-            name="title"
-            class="modal__form-input"
-            placeholder="Name"
-            id="profile-title-input"
-            minlength="2"
-            maxlength="40"
-            required
-          />
-          <span
-            class="modal__form-input-error"
-            id="profile-title-input-error"
-          ></span>
-          <input
-            type="text"
-            name="description"
-            class="modal__form-input"
-            placeholder="Description"
-            id="profile-description-input"
-            minlength="2"
-            maxlength="200"
-            required
-          />
-          <span
-            class="modal__form-input-error"
-            id="profile-description-input-error"
-          ></span>
-          <button type="submit" class="modal__save-button">Save</button>
+        <h2 class="modal__heading">Edit profile</h2>
+        <form class="modal__form">
+          <label class="modal__label">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              class="modal__input"
+              id="profile-name-input"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__error" id="profile-name-input-error"></span>
+          </label>
+          <label class="modal__label">
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              class="modal__input"
+              id="profile-description-input"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span
+              class="modal__error"
+              id="profile-description-input-error"
+            ></span>
+          </label>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
 
-    <div class="modal" id="places-add-modal">
+    <div class="modal" id="card-edit-modal">
       <div class="modal__container">
         <button
-          class="modal__close-button"
-          id="places-modal-close-btn"
+          class="modal__close"
+          id="card-modal-button-close"
+          type="button"
         ></button>
-        <h2 class="modal__heading">New Place</h2>
-        <form class="modal__form" id="add-place-form" novalidate>
-          <input
-            type="text"
-            name="title"
-            class="modal__form-input"
-            placeholder="Title"
-            id="place-title-input"
-            minlength="1"
-            maxlength="30"
-            required
-          />
-          <span
-            class="modal__form-input-error"
-            id="place-title-input-error"
-          ></span>
-          <input
-            type="url"
-            name="url"
-            class="modal__form-input"
-            placeholder="Image URL"
-            id="place-url-input"
-            required
-          />
-          <span
-            class="modal__form-input-error"
-            id="place-url-input-error"
-          ></span>
-          <button type="submit" class="modal__save-button" disabled>
-            Save
-          </button>
+        <h2 class="modal__heading">New place</h2>
+        <form class="modal__form" id="card-edit-form">
+          <label class="modal__label">
+            <input
+              type="text"
+              name="name"
+              placeholder="Title"
+              class="modal__input"
+              id="card-title-input"
+              minlength="1"
+              maxlength="30"
+              required
+            />
+            <span class="modal__error" id="card-title-input-error"></span>
+          </label>
+          <label class="modal__label">
+            <input
+              type="url"
+              name="link"
+              placeholder="Image URL"
+              class="modal__input"
+              id="card-url-input"
+              required
+            />
+            <span class="modal__error" id="card-url-input-error"></span>
+          </label>
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>
 
-    <div class="modal" id="places-preview-modal">
-      <div class="modal__container-imagepreview">
+    <div class="modal" id="preview-modal">
+      <div class="modal__container modal__container_preview">
+        <img src="" alt="" class="modal__preview_image" />
         <button
-          class="modal__close-button"
-          id="preview-modal-close-btn"
+          class="modal__close modal__close_preview"
+          type="button"
         ></button>
-        <img src="" alt="" class="modal__image-preview" id="places-preview" />
-        <h2 class="modal__image-caption" id="modal-image-caption"></h2>
+        <p class="modal__preview_text"></p>
       </div>
     </div>
 
     <template id="card-template">
       <li class="card">
-        <button
-          class="card__delete-button"
-          type="button"
-          aria-label="Delete Place"
-        ></button>
         <img src="" alt="" class="card__image" />
+        <button class="card__delete-button" type="button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button
-            class="card__react-button"
-            type="button"
-            aria-label="Like React to Post"
-          ></button>
+          <button class="card__like-button" type="button"></button>
         </div>
       </li>
     </template>
