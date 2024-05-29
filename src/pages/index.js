@@ -18,15 +18,17 @@ const placesAddBtn = document.querySelector("#places-add-btn");
 const placeAddForm = document.forms["add-place-form"];
 
 profileEditBtn.addEventListener("click", () => {
-  const { name, job } = userInfo.getUserInfo();
-  profileTitleInput.value = name;
-  profileDescriptionInput.value = job;
+  const userInfoData = userInfo.getUserInfo();
+  profileTitleInput.value = userInfoData.name;
+  profileDescriptionInput.value = userInfoData.job;
   editProfileModal.open();
-  profileEditValidation.resetValidation();
 });
 
-function handleProfileEditSubmit(formData) {
-  userInfo.setUserInfo(formData);
+function handleProfileEditSubmit() {
+  userInfo.setUserInfo({
+    profileName: profileTitleInput.value,
+    profileJob: profileDescriptionInput.value,
+  });
   editProfileModal.close();
 }
 
@@ -63,7 +65,10 @@ const section = new Section(
 
 const imagePreviewModal = new PopupWithImage("#places-preview-modal");
 
-const userInfo = new UserInfo();
+const userInfo = new UserInfo({
+  nameSelector: ".profile__title",
+  jobSelector: ".profile__description",
+});
 
 const editProfileModal = new PopupWithForm(
   "#profile-edit-modal",
