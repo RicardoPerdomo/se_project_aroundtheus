@@ -24,11 +24,8 @@ profileEditBtn.addEventListener("click", () => {
   editProfileModal.open();
 });
 
-function handleProfileEditSubmit() {
-  userInfo.setUserInfo({
-    profileName: profileTitleInput.value,
-    profileJob: profileDescriptionInput.value,
-  });
+function handleProfileEditSubmit(formData) {
+  userInfo.setUserInfo(formData);
   editProfileModal.close();
 }
 
