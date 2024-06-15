@@ -20,21 +20,34 @@
       </header>
       <main class="content">
         <section class="profile page__section">
+          <button
+            class="avatar__edit-overlay"
+            id="avatar-save-btn"
+            type="button"
+            aria-label="Update Avatar Picture"
+          >
+            <img
+              src="<%=require('./images/avatar__edit-btn.svg')%>"
+              alt="Edit
+            Avatar"
+              class="avatar__edit-button"
+            />
+          </button>
           <img
-            src="<%=require('./images/Avatar.jpg')%>"
-            alt="Jacques Cousteau
-          Avatar Image"
+            src="<%=require(./images/Avatar')%>"
+            alt=""
             class="profile__image"
+            id="avatar__image"
           />
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title"></h1>
             <button
               class="profile__edit-button"
               id="profile-edit-btn"
               type="button"
               aria-label="Edit Profile"
             ></button>
-            <p class="profile__description">Explorer</p>
+            <p class="profile__description"></p>
           </div>
           <button
             class="profile__add-button"
@@ -142,6 +155,35 @@
         ></button>
         <img src="" alt="" class="modal__image-preview" id="places-preview" />
         <h2 class="modal__image-caption" id="modal-image-caption"></h2>
+      </div>
+    </div>
+
+    <div class="modal" id="avatar-update-modal">
+      <div class="modal__container modal__container-avatar">
+        <button
+          class="modal__close-button"
+          id="avatar-modal-close-btn"
+        ></button>
+        <h2 class="modal__heading modal__heading-avatar">
+          Change profile picture
+        </h2>
+        <form class="modal__form" id="update-avatar-form" novalidate>
+          <input
+            type="url"
+            name="url"
+            class="modal__form-input"
+            placeholder="Profile Picture URL"
+            id="avatar-url-input"
+            required
+          />
+          <span
+            class="modal__form-input-error"
+            id="avatar-url-input-error"
+          ></span>
+          <button type="submit" class="modal__save-button" disabled>
+            Save
+          </button>
+        </form>
       </div>
     </div>
 

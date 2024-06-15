@@ -7,7 +7,6 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._inputList = this._popupForm.querySelectorAll(".modal__form-input");
   }
-
   _getInputValues() {
     this._formValues = {};
     this._inputList.forEach((input) => {
@@ -17,15 +16,38 @@ export default class PopupWithForm extends Popup {
   }
 
   reset() {
-    this._popupForm.reset();
+    if (this._popupForm) {
+      this._popupForm.reset();
+    }
   }
 
   setEventListeners() {
-    this._popupForm.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
-    });
-
     super.setEventListeners();
+    if (this._popupForm) {
+      this._popupForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        this._handleFormSubmit(this._getInputValues());
+      });
+    }
+  }
+
+  setSubmitHandler(newSubmitHandler) {
+    this._handleFormSubmit = newSubmitHandler;
+  }
+
+  setLoading(
+    isLoading,
+    loadingText = "Saving...",
+    defaultText = this._defaultText
+  ) {
+    if (this._submitBtn) {
+      if (isLoading) {
+        this._submitBtn.textContent = loadingText;
+        this._submitBtn.setAttribute("disabled", true);
+      } else {
+        this._submitBtn.textContent = defaultText;
+        this._submitBtn.removeAttribute("disabled");
+      }
+    }
   }
 }
