@@ -5,35 +5,72 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { settings, elements } from "../utils/constants.js";
-import Api from "../components/Api.js";
+import { initialCards, settings } from "../utils/constants.js";
 
-const {
-  profileEditBtn,
-  profileTitleInput,
-  profileEditForm,
-  profileDescriptionInput,
-  placesAddBtn,
-  placeAddForm,
-  avatarUpdateBtn,
-  avatarForm,
-} = elements;
+/* Profile Var */
+const profileEditBtn = document.querySelector("#profile-edit-btn");
+const profileTitleInput = document.querySelector("#profile-title-input");
+const profileEditForm = document.forms["profile-form"];
+const profileDescriptionInput = document.querySelector(
+  "#profile-description-input"
+);
 
-const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "aa041b81-83cc-4a10-be92-30e81ddc9ca9",
-    "content-type": "application/json",
-  },
+/* Places Var */
+const placesAddBtn = document.querySelector("#places-add-btn");
+const placeAddForm = document.forms["add-place-form"];
+
+/* Edit Profile Button Listener */
+profileEditBtn.addEventListener("click", () => {
+  const { name, job } = userInfo.getUserInfo();
+  profileTitleInput.value = name;
+  profileDescriptionInput.value = job;
+  editProfileModal.open();
+  profileEditValidation.resetValidation();
 });
 
+/* Profile Edit Function */
+function handleProfileEditSubmit(formData) {
+  userInfo.setUserInfo(formData);
+  editProfileModal.close();
+}
+
+/* Add Place Button Listener */
+placesAddBtn.addEventListener("click", () => {
+  addPlaceModal.open();
+});
+
+/* Add Place Function */
+function handleNewPlaceSubmit(cardData) {
+  const { title, url } = cardData;
+  const cardElement = getCardElement({ name: title, link: url });
+  section.addItem(cardElement);
+  addPlaceModal.close();
+  addPlaceModal.reset();
+  addPlaceValidation.disableButton();
+}
+
+/* Image Click Preview Function */
 function handleImageClick(imageData) {
   imagePreviewModal.open(imageData);
 }
 
+function getCardElement(cardData) {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  const cardElement = card.getView();
+  return cardElement;
+}
+
 const profileEditValidation = new FormValidator(settings, profileEditForm);
 const addPlaceValidation = new FormValidator(settings, placeAddForm);
-const avatarValidation = new FormValidator(settings, avatarForm);
+
+const section = new Section(
+  { items: initialCards, renderer: getCardElement },
+  ".cards__list"
+);
+
+const imagePreviewModal = new PopupWithImage("#places-preview-modal");
+
+const userInfo = new UserInfo();
 
 const editProfileModal = new PopupWithForm(
   "#profile-edit-modal",
@@ -45,175 +82,9 @@ const addPlaceModal = new PopupWithForm(
   handleNewPlaceSubmit
 );
 
-const updateAvatarModal = new PopupWithForm(
-  "#avatar-update-modal",
-  handleAvatarSubmit
-);
-const imagePreviewModal = new PopupWithImage("#places-preview-modal");
-const deletePlaceModal = new PopupWithForm("#places-delete-modal", () => {});
-
 editProfileModal.setEventListeners();
 imagePreviewModal.setEventListeners();
-updateAvatarModal.setEventListeners();
 addPlaceModal.setEventListeners();
-deletePlaceModal.setEventListeners();
-avatarValidation.enableValidation();
+section.renderItems();
 profileEditValidation.enableValidation();
 addPlaceValidation.enableValidation();
-
-function handleSubmit(
-  request,
-  popupInstance,
-  loadingText = "Saving...",
-  defaultText = "Save"
-) {
-  popupInstance.setLoading(true, loadingText);
-
-  return request()
-    .then(() => {
-      popupInstance.close();
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    })
-    .finally(() => {
-      popupInstance.setLoading(false, defaultText);
-    });
-}
-
-function handleDeleteClick(cardID, cardElement) {
-  deletePlaceModal.setSubmitHandler(() => {
-    function makeRequest() {
-      return api.removePlace(cardID).then(() => {
-        cardElement.remove();
-      });
-    }
-    handleSubmit(makeRequest, deletePlaceModal, "Removing...", "Yes");
-  });
-  deletePlaceModal.open();
-}
-
-function getCardElement(cardData) {
-  const card = new Card(
-    cardData,
-    "#card-template",
-    handleImageClick,
-    handleDeleteClick,
-    handleLikeReact
-  );
-  return card.getView();
-}
-
-let section;
-api
-  .getInitialCards()
-  .then((items) => {
-    section = new Section(
-      {
-        items: items,
-        renderer: (cardData) => {
-          const cardElement = getCardElement(cardData);
-          return cardElement;
-        },
-      },
-      ".cards__list"
-    );
-    section.renderItems();
-  })
-  .catch((err) => console.error(err));
-
-const userInfo = new UserInfo(
-  ".profile__title",
-  ".profile__description",
-  ".profile__image"
-);
-api
-  .getUserInfo()
-  .then((profileData) => {
-    userInfo.setUserInfo(profileData);
-  })
-  .catch((err) => console.error(err));
-
-function handleProfileEditSubmit(profileInputValues) {
-  function makeRequest() {
-    return api
-      .editUserInfo(profileInputValues.title, profileInputValues.description)
-      .then((updatedUserData) => {
-        userInfo.setUserInfo(updatedUserData);
-      });
-  }
-
-  handleSubmit(makeRequest, editProfileModal);
-}
-
-/* PATCH Profile Avatar Function */
-function handleAvatarSubmit({ url }) {
-  function makeRequest() {
-    return api.updateAvatar(url).then(() => {
-      userInfo.updateAvatar(url);
-    });
-  }
-
-  handleSubmit(makeRequest, updateAvatarModal, "Saving...").then(() => {
-    updateAvatarModal.reset();
-    updateAvatarModal.setLoading(true, "Save");
-  });
-}
-
-function handleNewPlaceSubmit(placeCardData) {
-  function makeRequest() {
-    const cardData = {
-      name: placeCardData.title,
-      link: placeCardData.url,
-    };
-    return api
-      .addNewPlace(cardData.name, cardData.link)
-      .then((newPlaceCard) => {
-        const cardElement = getCardElement({
-          name: newPlaceCard.name,
-          link: newPlaceCard.link,
-          _id: newPlaceCard._id,
-        });
-        section.addItem(cardElement);
-      });
-  }
-
-  handleSubmit(makeRequest, addPlaceModal, "Saving...").then(() => {
-    addPlaceModal.reset();
-    addPlaceModal.setLoading(true, "Save");
-  });
-}
-
-function handleLikeReact(cardId, likeStatus) {
-  if (likeStatus) {
-    return api
-      .removeLikeReact(cardId)
-      .then(() => {})
-      .catch((error) => {
-        console.error("Error removing like reaction:", error);
-      });
-  } else {
-    return api
-      .addLikeReact(cardId)
-      .then(() => {})
-      .catch((error) => {
-        console.error("Error adding like reaction:", error);
-      });
-  }
-}
-
-profileEditBtn.addEventListener("click", () => {
-  const { name, job } = userInfo.getUserInfo();
-  profileTitleInput.value = name;
-  profileDescriptionInput.value = job;
-  editProfileModal.open();
-  profileEditValidation.resetValidation();
-});
-
-placesAddBtn.addEventListener("click", () => {
-  addPlaceModal.open();
-});
-
-avatarUpdateBtn.addEventListener("click", () => {
-  updateAvatarModal.open();
-});
