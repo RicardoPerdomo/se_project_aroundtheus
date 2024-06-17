@@ -33,10 +33,6 @@ export default class PopupWithForm extends Popup {
     }
   }
 
-  open() {
-    super.open();
-  }
-
   setSubmitHandler(newSubmitHandler) {
     this._handleFormSubmit = newSubmitHandler;
   }

@@ -165,48 +165,45 @@ function handleAvatarSubmit({ url }) {
 
 /* POST Add Place Function */
 function handleNewPlaceSubmit(placeCardData) {
-  addPlaceModal.setLoading(true);
-  const cardData = {
-    name: placeCardData.title,
-    link: placeCardData.url,
-  };
-
-  api
-    .addNewPlace(cardData.name, cardData.link)
-    .then((newPlaceCard) => {
-      const cardElement = getCardElement({
-        name: newPlaceCard.name,
-        link: newPlaceCard.link,
-        _id: newPlaceCard._id,
+  function makeRequest() {
+    const cardData = {
+      name: placeCardData.title,
+      link: placeCardData.url,
+    };
+    return api
+      .addNewPlace(cardData.name, cardData.link)
+      .then((newPlaceCard) => {
+        const cardElement = getCardElement({
+          name: newPlaceCard.name,
+          link: newPlaceCard.link,
+          _id: newPlaceCard._id,
+        });
+        section.addItem(cardElement);
       });
-      section.addItem(cardElement);
-      addPlaceModal.close();
-      addPlaceModal.reset();
-    })
-    .catch((err) => {
-      console.error("Error adding new place:", err);
-    })
-    .finally(() => {
-      addPlaceModal.setLoading(false);
-      addPlaceValidation.disableButton();
-    });
+  }
+
+  handleSubmit(makeRequest, addPlaceModal, "Saving...").then(() => {
+    addPlaceModal.reset();
+    addPlaceModal.setLoading(true, "Save");
+  });
 }
 
-function handleLikeReact(likeReact, likeStatus, cardId) {
+//Like React//
+function handleLikeReact(cardId, likeStatus) {
   if (likeStatus) {
-    api
+    return api
       .removeLikeReact(cardId)
-      .then(() => {
-        likeReact.classList.remove("card__react-button_active");
-      })
-      .catch((error) => console.error("Error removing like reaction:", error));
+      .then(() => {})
+      .catch((error) => {
+        console.error("Error removing like reaction:", error);
+      });
   } else {
-    api
+    return api
       .addLikeReact(cardId)
-      .then(() => {
-        likeReact.classList.add("card__react-button_active");
-      })
-      .catch((error) => console.error("Error adding like reaction:", error));
+      .then(() => {})
+      .catch((error) => {
+        console.error("Error adding like reaction:", error);
+      });
   }
 }
 
