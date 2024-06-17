@@ -34,11 +34,12 @@
             />
           </button>
           <img
-            src="<%=require(./images/Avatar')%>"
+            src="<%=require('./images/avatar_defaultt.jpg')%>"
             alt=""
             class="profile__image"
             id="avatar__image"
           />
+          <!---->
           <div class="profile__info">
             <h1 class="profile__title"></h1>
             <button
@@ -106,6 +107,25 @@
       </div>
     </div>
 
+    <!-- Confrm Delete Place Modal -->
+    <div class="modal" id="places-delete-modal">
+      <div class="modal__container modal__container-confirm">
+        <button
+          class="modal__close-button"
+          id="delete-place-close-btn"
+        ></button>
+        <h2 class="modal__heading modal__heading-confirm">Are you sure?</h2>
+        <form class="modal__form">
+          <button
+            type="submit"
+            class="modal__save-button modal__save-button-confirm"
+          >
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div class="modal" id="places-add-modal">
       <div class="modal__container">
         <button
@@ -158,6 +178,7 @@
       </div>
     </div>
 
+    <!--Update Modal-->
     <div class="modal" id="avatar-update-modal">
       <div class="modal__container modal__container-avatar">
         <button
