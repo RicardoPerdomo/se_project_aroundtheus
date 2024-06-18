@@ -63,21 +63,35 @@ avatarValidation.enableValidation();
 profileEditValidation.enableValidation();
 addPlaceValidation.enableValidation();
 
+function handleSubmit(
+  request,
+  popupInstance,
+  loadingText = "Saving...",
+  defaultText = "Save"
+) {
+  popupInstance.setLoading(true, loadingText);
+
+  return request()
+    .then(() => {
+      popupInstance.close();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    })
+    .finally(() => {
+      popupInstance.setLoading(false, defaultText);
+    });
+}
+
 function handleDeleteClick(cardID, cardElement) {
   deletePlaceModal.setSubmitHandler(() => {
-    deletePlaceModal.setLoading(true, "Removing...", "Yes");
-    api
-      .removePlace(cardID)
-      .then(() => {
+    function makeRequest() {
+      return api.removePlace(cardID).then(() => {
         cardElement.remove();
-        deletePlaceModal.close();
-      })
-      .catch((err) => {
-        console.error("Error deleting place:", err);
-      })
-      .finally(() => {
-        deletePlaceModal.setLoading(false, "Removing...", "Yes");
       });
+    }
+
+    handleSubmit(makeRequest, deletePlaceModal, "Removing...", "Yes");
   });
   deletePlaceModal.open();
 }
