@@ -1,12 +1,13 @@
 export default class UserInfo {
-  constructor() {
-    this._profileName = document.querySelector(".profile__title");
-    this._profileJob = document.querySelector(".profile__description");
-    this._profileAvatar = document.querySelector(".profile__image");
+  constructor(profileName, profileJob, profileAvatar) {
+    this._profileName = document.querySelector(profileName);
+    this._profileJob = document.querySelector(profileJob);
+    this._profileAvatar = document.querySelector(profileAvatar);
   }
 
   updateAvatar(image) {
     this._profileAvatar.src = image;
+    this._profileAvatar.alt = this._profileName.textContent;
   }
 
   getUserInfo() {
@@ -21,10 +22,10 @@ export default class UserInfo {
     this._profileName.textContent = name;
     this._profileJob.textContent = about;
     if (avatar) {
-      this._profileAvatar.src = avatar;
-      this._profileAvatar.alt = name;
+      this.updateAvatar(avatar);
     } else {
       this._profileAvatar.src = "./images/avatar_defaultt.jpg";
+      this._profileAvatar.alt = name;
     }
   }
 }

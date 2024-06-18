@@ -32,6 +32,7 @@ function handleImageClick(imageData) {
   imagePreviewModal.open(imageData);
 }
 
+// validators
 const profileEditValidation = new FormValidator(settings, profileEditForm);
 const addPlaceValidation = new FormValidator(settings, placeAddForm);
 const avatarValidation = new FormValidator(settings, avatarForm);
@@ -127,7 +128,11 @@ api
   .catch((err) => console.error(err));
 
 /* GET Profile */
-const userInfo = new UserInfo();
+const userInfo = new UserInfo(
+  ".profile__title",
+  ".profile__description",
+  ".profile__image"
+);
 api
   .getUserInfo()
   .then((profileData) => {
@@ -227,7 +232,6 @@ profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = name;
   profileDescriptionInput.value = job;
   editProfileModal.open();
-  profileEditValidation.resetValidation();
 });
 
 /* Add Place Button Listener */
