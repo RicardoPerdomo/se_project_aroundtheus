@@ -88,7 +88,7 @@ function handleSubmit(
       disableBtn = false;
     })
     .finally(() => {
-      popupInstance.setLoading(disableBtn, defaultText);
+      popupInstance.setLoading(disableBtn, defaultText, defaultText);
     });
 }
 
