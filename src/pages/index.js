@@ -197,12 +197,11 @@ function handleNewPlaceSubmit(placeCardData) {
           link: newPlaceCard.link,
           _id: newPlaceCard._id,
         });
+        addPlaceModal.reset();
         section.addItem(cardElement);
       });
   }
-
-  handleSubmit(makeRequest, addPlaceModal, "Saving...").then(() => {
-    addPlaceModal.reset();
+  handleSubmit(makeRequest, addPlaceModal, "Saving...", "Save", () => {
     addPlaceModal.setLoading(true, "Save");
   });
 }
@@ -210,19 +209,9 @@ function handleNewPlaceSubmit(placeCardData) {
 //Like React//
 function handleLikeReact(cardId, likeStatus) {
   if (likeStatus) {
-    return api
-      .removeLikeReact(cardId)
-      .then(() => {})
-      .catch((error) => {
-        console.error("Error removing like reaction:", error);
-      });
+    return api.removeLikeReact(cardId);
   } else {
-    return api
-      .addLikeReact(cardId)
-      .then(() => {})
-      .catch((error) => {
-        console.error("Error adding like reaction:", error);
-      });
+    return api.addLikeReact(cardId);
   }
 }
 
