@@ -68,19 +68,27 @@ function handleSubmit(
   request,
   popupInstance,
   loadingText = "Saving...",
-  defaultText = "Save"
+  defaultText = "Save",
+  disableBtn = false
 ) {
   popupInstance.setLoading(true, loadingText);
 
   return request()
     .then(() => {
       popupInstance.close();
+      popupInstance.reset();
+      if (disableBtn) {
+        popupInstance.setLoading(true);
+      } else {
+        popupInstance.setLoading(false);
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
+      disableBtn = false;
     })
     .finally(() => {
-      popupInstance.setLoading(false, defaultText);
+      popupInstance.setLoading(disableBtn, defaultText);
     });
 }
 
@@ -92,7 +100,7 @@ function handleDeleteClick(cardID, cardElement) {
       });
     }
 
-    handleSubmit(makeRequest, deletePlaceModal, "Removing...", "Yes");
+    handleSubmit(makeRequest, deletePlaceModal, "Removing...", "Yes", false);
   });
   deletePlaceModal.open();
 }
@@ -142,44 +150,24 @@ api
 
 /* PATCH Profile Edit Function */
 function handleProfileEditSubmit(profileInputValues) {
-  editProfileModal.setLoading(true);
-  const userData = {
-    name: profileInputValues.title,
-    about: profileInputValues.description,
-  };
-
-  api
-    .editUserInfo(userData.name, userData.about)
-    .then((updatedUserData) => {
-      userInfo.setUserInfo(updatedUserData);
-      editProfileModal.close();
-    })
-    .catch((err) => {
-      console.error("Error updating user info:", err);
-    })
-    .finally(() => {
-      editProfileModal.setLoading(false);
-    });
+  function makeRequest() {
+    return api
+      .editUserInfo(profileInputValues.title, profileInputValues.description)
+      .then((updatedUserData) => {
+        userInfo.setUserInfo(updatedUserData);
+      });
+  }
+  handleSubmit(makeRequest, editProfileModal, "Saving...", "Save", false);
 }
 
 /* PATCH Profile Avatar Function */
 function handleAvatarSubmit({ url }) {
-  updateAvatarModal.setLoading(true);
-
-  api
-    .updateAvatar(url)
-    .then((res) => {
+  function makeRequest() {
+    return api.updateAvatar(url).then(() => {
       userInfo.updateAvatar(url);
-      updateAvatarModal.reset();
-      updateAvatarModal.close();
-      console.log("Success:", res);
-    })
-    .catch((err) => {
-      console.error("Error updating profile avatar:", err);
-    })
-    .finally(() => {
-      updateAvatarModal.setLoading(true, "Save");
     });
+  }
+  handleSubmit(makeRequest, updateAvatarModal, "Saving...", "Save", true);
 }
 
 /* POST Add Place Function */
@@ -197,13 +185,10 @@ function handleNewPlaceSubmit(placeCardData) {
           link: newPlaceCard.link,
           _id: newPlaceCard._id,
         });
-        addPlaceModal.reset();
         section.addItem(cardElement);
       });
   }
-  handleSubmit(makeRequest, addPlaceModal, "Saving...", "Save", () => {
-    addPlaceModal.setLoading(true, "Save");
-  });
+  handleSubmit(makeRequest, addPlaceModal, "Saving...", "Save", true);
 }
 
 //Like React//
@@ -221,6 +206,7 @@ profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = name;
   profileDescriptionInput.value = job;
   editProfileModal.open();
+  profileEditValidation.resetValidation();
 });
 
 /* Add Place Button Listener */
